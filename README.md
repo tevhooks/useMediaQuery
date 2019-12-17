@@ -2,7 +2,7 @@
 
 > react hook for handling media queries
 
-[![NPM](https://img.shields.io/npm/v/use-media-query.svg)](https://www.npmjs.com/package/use-media-query) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/@tevhooks/use-media-query?style=for-the-badge) [![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/made-with-crayons.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/built-by-hipsters.svg)](https://forthebadge.com)
 
 ## Install
 

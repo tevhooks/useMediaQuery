@@ -1,10 +1,10 @@
 {
   "name": "@tevhooks/use-media-query",
-  "version": "1.0.01",
+  "version": "1.0.2",
   "description": "react hook for handling media queries",
   "author": "Tevinthuku",
   "license": "MIT",
-  "repository": "Tevinthuku/use-media-query",
+  "repository": "tevhooks/useMediaQuery",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
