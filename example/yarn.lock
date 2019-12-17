@@ -1259,7 +1259,7 @@
     "@svgr/plugin-svgo" "^4.3.1"
     loader-utils "^1.2.3"
 
-"@tev/use-media-query@link:..":
+"@tevhooks/use-media-query@link:..":
   version "0.0.0"
   uid ""
 

@@ -7,7 +7,7 @@
 ## Install
 
 ```bash
-npm install --save @tev/use-media-query
+npm install --save @tevhooks/use-media-query
 ```
 
 ## Usage
@@ -16,7 +16,7 @@ At the root level of your app, you need to define the various breakpoints that y
 You can have the most common breakpoints defined here.
 
 ```jsx
-import { QueryProvider } from '@tev/use-media-query'
+import { QueryProvider } from '@tevhooks/use-media-query'
 
 const breakpoints = {
   xs: 300,
@@ -37,7 +37,7 @@ ReactDOM.render(
 In your components use this hook to render components based on the screen's size.
 
 ```jsx
-import useMediaQuery from '@tev/use-media-query'
+import useMediaQuery from '@tevhooks/use-media-query'
 
 const App = () => {
   const isMobileScreen = useMediaQuery(query => query.down('xs'))// use the breakpoints that you defined in the root of your app
@@ -51,7 +51,7 @@ const App = () => {
 For edge cases / breakpoints that do not need to be in the main breakpoints, just pass in the string for the required media-query
 
 ```jsx
-import useMediaQuery from '@tev/use-media-query'
+import useMediaQuery from '@tevhooks/use-media-query'
 
 const App = () => {
   const isMobileScreen = useMediaQuery("(max-width: 300px)"))// pass in the media-query string
@@ -65,7 +65,7 @@ const App = () => {
 For those not using Hooks, there's a renderProp component that does the same thing
 
 ```jsx
-import { RenderUseMediaQuery } from '@tev/use-media-query'
+import { RenderUseMediaQuery } from '@tevhooks/use-media-query'
 
 function App() {
   return (

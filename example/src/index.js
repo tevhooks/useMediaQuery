@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import { QueryProvider } from '@tev/use-media-query'
+import { QueryProvider } from '@tevhooks/use-media-query'
 
 import './index.css'
 import App from './App'

@@ -9,7 +9,7 @@
     "react": "link:../node_modules/react",
     "react-dom": "^16.8.6",
     "react-scripts": "^3.0.1",
-    "@tev/use-media-query": "link:.."
+    "@tevhooks/use-media-query": "link:.."
   },
   "scripts": {
     "start": "react-scripts start",
