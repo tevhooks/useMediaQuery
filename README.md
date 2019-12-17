@@ -1,6 +1,7 @@
 # use-media-query
 
 > react hook for handling media queries
+> [![Build Status](https://travis-ci.org/tevhooks/useMediaQuery.svg?branch=master)](https://travis-ci.org/tevhooks/useMediaQuery)
 
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/@tevhooks/use-media-query?style=for-the-badge) [![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/made-with-crayons.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/built-by-hipsters.svg)](https://forthebadge.com)
 
