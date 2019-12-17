@@ -1,12 +1,25 @@
 import React from 'react'
-import { useMyHook } from 'use-media-query'
+import useMediaQuery, { RenderUseMediaQuery } from '@tev/use-media-query'
 
 const App = () => {
-  const example = useMyHook()
+  const isMobileScreen = useMediaQuery(query => query.down('xs'))
   return (
     <div>
-      {example}
+      <h1>Hooks API</h1>
+      {isMobileScreen ? 'Small' : 'Not small'}
+
+      <RenderUseMediaQuery query={'(max-width: 300px)'}>
+        {isMobileScreen => {
+          return (
+            <div>
+              <h1>Render prop API</h1>
+              {isMobileScreen ? 'Small' : 'Not small'}
+            </div>
+          )
+        }}
+      </RenderUseMediaQuery>
     </div>
   )
 }
+
 export default App

@@ -1,21 +1,56 @@
-import * as React from 'react'
+import React, { useState, useEffect, useContext, createContext } from 'react'
+import PropTypes from 'prop-types'
 
-export const useMyHook = () => {
-  let [{
-    counter
-  }, setState] = React.useState({
-    counter: 0
-  })
+const QueryContext = createContext()
+function breakpointsFormatter(breakpoints) {
+  return {
+    up: selectedBreakPoint =>
+      `(min-width: ${parseInt(breakpoints[selectedBreakPoint])}px)`,
+    down: selectedBreakPoint =>
+      `(max-width: ${parseInt(breakpoints[selectedBreakPoint])}px)`
+  }
+}
 
-  React.useEffect(() => {
-    let interval = window.setInterval(() => {
-      counter++
-      setState({counter})
-    }, 1000)
-    return () => {
-      window.clearInterval(interval)
-    }
-  }, [])
+export default function useMediaQuery(query) {
+  const breakpoints = useContext(QueryContext)
+  const mediaQuery =
+    typeof query === 'function'
+      ? query(breakpointsFormatter(breakpoints))
+      : query
+  const mediaQueryList = window.matchMedia(mediaQuery)
+  const [queryMatch, setQueryMatch] = useState(() => mediaQueryList.matches)
+  useEffect(() => {
+    const setMediaMatchHandler = e => setQueryMatch(e.matches)
 
-  return counter
+    setMediaMatchHandler(mediaQueryList)
+
+    mediaQueryList.addListener(setMediaMatchHandler)
+
+    return () => mediaQueryList.removeListener(setMediaMatchHandler)
+  }, [mediaQuery])
+
+  return queryMatch
+}
+
+export function QueryProvider({ children, breakpoints }) {
+  return (
+    <QueryContext.Provider value={breakpoints}>
+      {children}
+    </QueryContext.Provider>
+  )
+}
+
+QueryProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+  breakpoints: PropTypes.object.isRequired
+}
+
+export function RenderUseMediaQuery({ children, query }) {
+  const pred = useMediaQuery(query)
+  return children(pred)
+}
+
+RenderUseMediaQuery.propTypes = {
+  children: PropTypes.func.isRequired,
+  query: PropTypes.oneOfType([PropTypes.string, PropTypes.func]).isRequired
 }
