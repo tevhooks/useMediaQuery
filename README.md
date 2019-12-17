@@ -40,11 +40,8 @@ In your components use this hook to render components based on the screen's size
 import useMediaQuery from '@tevhooks/use-media-query'
 
 const App = () => {
-  const isMobileScreen = useMediaQuery(query => query.down('xs'))// use the breakpoints that you defined in the root of your app
-  return (
-    <div>
-      {isMobileScreen ? 'Small' : 'Not small'}
-  )
+  const isMobileScreen = useMediaQuery(query => query.down('xs')) // use the breakpoints that you defined in the root of your app
+  return <div>{isMobileScreen ? 'Small' : 'Not small'}</div>
 }
 ```
 
