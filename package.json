@@ -1,6 +1,6 @@
 {
   "name": "@tevhooks/use-media-query",
-  "version": "1.0.3",
+  "version": "1.0.31",
   "description": "react hook for handling media queries",
   "author": "Tevinthuku",
   "license": "MIT",

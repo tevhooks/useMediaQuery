@@ -2,7 +2,7 @@
 
 > react hook for handling media queries
 
-[![Build Status](https://travis-ci.org/tevhooks/useMediaQuery.svg?branch=master)](https://travis-ci.org/tevhooks/useMediaQuery)
+[![Build Status](https://travis-ci.org/tevhooks/useMediaQuery.svg?branch=master)](https://travis-ci.org/tevhooks/useMediaQuery)[![Coverage Status](https://coveralls.io/repos/github/tevhooks/useMediaQuery/badge.svg?branch=master)](https://coveralls.io/github/tevhooks/useMediaQuery?branch=master)
 
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/@tevhooks/use-media-query?style=for-the-badge) [![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/made-with-crayons.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/built-by-hipsters.svg)](https://forthebadge.com)
 
@@ -57,6 +57,7 @@ const App = () => {
   return (
     <div>
       {isMobileScreen ? 'Small' : 'Not small'}
+    </div>
   )
 }
 ```
