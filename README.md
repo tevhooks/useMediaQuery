@@ -83,6 +83,29 @@ function App() {
 }
 ```
 
+### API
+
+#### useMediaQuery
+
+The hook accepts either a string / a callback function that accepts a `query` object as a parameter
+
+The `query` object has the following shape
+
+```js
+query = {
+  up: () => {}, // if screen is bigger than the specified size
+  down: () => {} // if screen is smaller than specified size
+}
+```
+
+```jsx
+const isDesktop = useMediaQuery(query => query.up('lg'))
+```
+
+### RenderUseMediaQuery
+
+The RenderProp component has a JSX attribute `query` which accepts the same thing as the `useMediaQuery` hook mentioned above.
+
 ## License
 
 MIT © [Tevinthuku](https://github.com/Tevinthuku)

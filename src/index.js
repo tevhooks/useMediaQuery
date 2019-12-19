@@ -27,7 +27,7 @@ export default function useMediaQuery(query) {
     mediaQueryList.addListener(setMediaMatchHandler)
 
     return () => mediaQueryList.removeListener(setMediaMatchHandler)
-  }, [mediaQuery])
+  }, [mediaQuery, mediaQueryList])
 
   return queryMatch
 }
