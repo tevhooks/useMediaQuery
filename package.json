@@ -1,6 +1,6 @@
 {
   "name": "@tevhooks/use-media-query",
-  "version": "1.0.21",
+  "version": "1.0.3",
   "description": "react hook for handling media queries",
   "author": "Tevinthuku",
   "license": "MIT",
@@ -70,6 +70,7 @@
     "rollup-plugin-commonjs": "^9.2.0",
     "rollup-plugin-node-resolve": "^4.0.0",
     "rollup-plugin-peer-deps-external": "^2.2.0",
+    "rollup-plugin-terser": "^5.1.3",
     "rollup-plugin-url": "^2.1.0"
   }
 }
