@@ -3,3 +3,6 @@ node_js:
   - 8
 env:
   - SKIP_PREFLIGHT_CHECK=true
+after_script:
+  - 'yarn test:coverage'
+  - 'cat ./coverage/lcov.info | coveralls'
