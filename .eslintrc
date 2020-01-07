@@ -15,6 +15,7 @@
     // allow specifying true explicitly for boolean props
     "react/jsx-boolean-value": 0,
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn"
+    "react-hooks/exhaustive-deps": "warn",
+    "react/prop-types": "off"
   }
 }

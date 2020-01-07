@@ -1,8 +1,31 @@
-import React, { useState, useEffect, useContext, createContext } from 'react'
-import PropTypes from 'prop-types'
+// @flow
 
-const QueryContext = createContext()
-function breakpointsFormatter(breakpoints) {
+import * as React from 'react'
+
+const { useState, useEffect, useContext, createContext } = React
+type BreakPointQueryFunction = string => string
+type BreakPointQueryObject = {
+  up: BreakPointQueryFunction,
+  down: BreakPointQueryFunction
+}
+
+type BreakPointObject = { [string | number]: string | number }
+
+type Query = string | BreakPointQueryObject
+
+type VoidObjectParamReturn = Object => void
+
+type MediaQueryResponseObject = {
+  matches: boolean,
+  addListener: (fn: VoidObjectParamReturn) => void,
+  removeListener: (fn: VoidObjectParamReturn) => void,
+  matchMedia: (fn: VoidObjectParamReturn) => void
+}
+
+const QueryContext = createContext<Object>()
+function breakpointsFormatter(
+  breakpoints: BreakPointObject
+): BreakPointQueryObject {
   return {
     up: selectedBreakPoint =>
       `(min-width: ${parseInt(breakpoints[selectedBreakPoint])}px)`,
@@ -11,28 +34,42 @@ function breakpointsFormatter(breakpoints) {
   }
 }
 
-export default function useMediaQuery(query) {
-  const breakpoints = useContext(QueryContext)
-  const mediaQuery =
+export default function useMediaQuery(query: Query): boolean {
+  const breakpoints: BreakPointObject = useContext(QueryContext)
+  const mediaQuery: Query =
     typeof query === 'function'
-      ? query(breakpointsFormatter(breakpoints))
+      ? query(breakpointsFormatter((breakpoints: BreakPointObject)))
       : query
-  const mediaQueryList = window.matchMedia(mediaQuery)
-  const [queryMatch, setQueryMatch] = useState(() => mediaQueryList.matches)
-  useEffect(() => {
-    const setMediaMatchHandler = e => setQueryMatch(e.matches)
+  const mediaQueryList: MediaQueryResponseObject = window.matchMedia(mediaQuery)
+  const [queryMatch, setQueryMatch]: [
+    boolean,
+    ((boolean => boolean) | boolean) => void
+  ] = useState(() => mediaQueryList.matches)
+  useEffect(
+    (() => {
+      const setMediaMatchHandler: VoidObjectParamReturn = (e: {
+        matches: boolean
+      }) => setQueryMatch(e.matches)
 
-    setMediaMatchHandler(mediaQueryList)
+      setMediaMatchHandler(mediaQueryList)
 
-    mediaQueryList.addListener(setMediaMatchHandler)
+      mediaQueryList.addListener(setMediaMatchHandler)
 
-    return () => mediaQueryList.removeListener(setMediaMatchHandler)
-  }, [mediaQuery, mediaQueryList])
+      return () => mediaQueryList.removeListener(setMediaMatchHandler)
+    }: () => () => void),
+    [mediaQuery, mediaQueryList]
+  )
 
   return queryMatch
 }
 
-export function QueryProvider({ children, breakpoints }) {
+export function QueryProvider({
+  children,
+  breakpoints
+}: {
+  children: React.Element<any>,
+  breakpoints: Query
+}): React.Node {
   return (
     <QueryContext.Provider value={breakpoints}>
       {children}
@@ -40,17 +77,13 @@ export function QueryProvider({ children, breakpoints }) {
   )
 }
 
-QueryProvider.propTypes = {
-  children: PropTypes.node.isRequired,
-  breakpoints: PropTypes.object.isRequired
-}
-
-export function RenderUseMediaQuery({ children, query }) {
+export function RenderUseMediaQuery({
+  children,
+  query
+}: {
+  children: (pred: boolean) => React.Element<any>,
+  query: Query
+}): React.Node {
   const pred = useMediaQuery(query)
   return children(pred)
-}
-
-RenderUseMediaQuery.propTypes = {
-  children: PropTypes.func.isRequired,
-  query: PropTypes.oneOfType([PropTypes.string, PropTypes.func]).isRequired
 }
